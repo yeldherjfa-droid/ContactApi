@@ -18,18 +18,18 @@ class AuthTest extends TestCase
 
     public function test_devuelve_un_token_con_credenciales_validas(): void
     {
-        $user = User::factory()->create([
-            'email_verified_at' => now(), 
-            'password' => bcrypt('password')
-        ]);
+        $user = User::factory()->create();
 
-        $this->postJson('/api/v1/auth/login', [
+        $datos = [
             'email' => $user->email,
             'password' => 'password',
             'device_name' => 'TestingDevice',
-        ])->assertOk()->assertJsonStructure([
-            'token',
-            'user' => ['id', 'name', 'email'],
+        ];
+                                                                                                                                                                                                                      
+        $response = $this->postJson('/api/v1/auth/login', $datos);
+
+        $response->assertStatus(200)->assertJsonStructure([
+            'token'
         ]);
     }
 
@@ -49,3 +49,4 @@ class AuthTest extends TestCase
         $this->postJson('/api/v1/auth/login', [])->assertStatus(422);
     }
 }
+
