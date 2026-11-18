@@ -17,6 +17,14 @@ class DatabaseSeeder extends Seeder
         ]);
         Contact::factory()->count(5)->for($demo)->create();
 
+        // Token fijo para Insomnia: Authorization: Bearer token-demo
+        // (el login real sigue entregando tokens nuevos)
+        $demo->tokens()->create([
+            'name' => 'insomnia',
+            'token' => hash('sha256', 'token-demo'),
+            'abilities' => ['*'],
+        ]);
+
         // Otros usuarios con sus propios contactos
         User::factory()
             ->count(4)
