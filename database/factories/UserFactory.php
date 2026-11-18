@@ -30,6 +30,8 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'avatar_url' => 'https://i.pravatar.cc/150?u='.fake()->unique()->uuid(),
             'address' => fake()->address(),
+            'birth_date' => fake()->date('Y-m-d', '-18 years'),
+            'phone_number' => fake()->numerify('3#########'),
             'remember_token' => Str::random(10),
         ];
     }

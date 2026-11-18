@@ -20,13 +20,18 @@ class User extends Authenticatable
         'password',
         'avatar_url',
         'address',
+        'birth_date',
+        'phone_number',
     ];
 
     protected $hidden = ['password', 'remember_token'];
 
     protected function casts(): array
     {
-        return ['password' => 'hashed'];
+        return [
+            'password' => 'hashed',
+            'birth_date' => 'date',
+        ];
     }
 
     public function contacts(): HasMany

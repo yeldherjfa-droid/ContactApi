@@ -16,7 +16,9 @@ class ContactFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name' => fake()->name(),
+            'address' => fake()->address(),
             'phone_number' => fake()->numerify('3#########'),
+            'email' => fake()->safeEmail(),
         ];
     }
 }
