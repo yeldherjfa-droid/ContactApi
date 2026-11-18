@@ -1,0 +1,330 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_source": "insomnia.desktop.app:v8",
+  "resources": [
+    {
+      "_id": "wrk_contactapi",
+      "_type": "workspace",
+      "parentId": null,
+      "name": "ContactApi",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "parentId": "wrk_contactapi",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8000/api/v1",
+        "token": "PEGA_AQUI_EL_TOKEN_DEL_LOGIN"
+      }
+    },
+    {
+      "_id": "req_01",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "01 Health",
+      "method": "GET",
+      "url": "{{ _.base_url }}/health",
+      "metaSortKey": 1,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {}
+    },
+    {
+      "_id": "req_02",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "02 Login",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/login",
+      "metaSortKey": 2,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password\",\n  \"device_name\": \"insomnia\"\n}"
+      },
+      "authentication": {}
+    },
+    {
+      "_id": "req_03",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "03 Ver perfil",
+      "method": "GET",
+      "url": "{{ _.base_url }}/profile",
+      "metaSortKey": 3,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_04",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "04 Editar perfil",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/profile",
+      "metaSortKey": 4,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Usuario Demo\",\n  \"birth_date\": \"2000-05-10\",\n  \"phone_number\": \"3001234567\"\n}"
+      },
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_05",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "05 Listar contactos",
+      "method": "GET",
+      "url": "{{ _.base_url }}/contacts",
+      "metaSortKey": 5,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_06",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "06 Crear contacto",
+      "method": "POST",
+      "url": "{{ _.base_url }}/contacts",
+      "metaSortKey": 6,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Carlos Pérez\",\n  \"address\": \"Calle 10 # 20-30\",\n  \"phone_number\": \"3001112233\",\n  \"email\": \"carlos@example.com\",\n  \"avatar\": \"https://i.pravatar.cc/150?u=carlos\"\n}"
+      },
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_07",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "07 Ver contacto",
+      "method": "GET",
+      "url": "{{ _.base_url }}/contacts/1",
+      "metaSortKey": 7,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_08",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "08 Editar contacto",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/contacts/1",
+      "metaSortKey": 8,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Carlos Editado\",\n  \"address\": \"Carrera 5 # 1-2\",\n  \"phone_number\": \"3109998877\",\n  \"email\": \"carlos.editado@example.com\"\n}"
+      },
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_09",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "09 Eliminar contacto (soft delete)",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/contacts/2",
+      "metaSortKey": 9,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_10",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "10 Error 403 - contacto de otro usuario",
+      "method": "GET",
+      "url": "{{ _.base_url }}/contacts/6",
+      "metaSortKey": 10,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_11",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "11 Error 404 - contacto inexistente",
+      "method": "GET",
+      "url": "{{ _.base_url }}/contacts/9999",
+      "metaSortKey": 11,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_12",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "12 Error 422 - contacto sin datos",
+      "method": "POST",
+      "url": "{{ _.base_url }}/contacts",
+      "metaSortKey": 12,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{}"
+      },
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_13",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "13 Logout",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auth/logout",
+      "metaSortKey": 13,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.token }}"
+      }
+    },
+    {
+      "_id": "req_14",
+      "_type": "request",
+      "parentId": "wrk_contactapi",
+      "name": "14 Error 401 - sin token",
+      "method": "GET",
+      "url": "{{ _.base_url }}/profile",
+      "metaSortKey": 14,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ],
+      "body": {},
+      "authentication": {}
+    }
+  ]
+}
