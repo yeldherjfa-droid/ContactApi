@@ -20,6 +20,7 @@ class ContactTest extends TestCase
         'address' => 'Calle 10 # 20-30',
         'phone_number' => '3001112233',
         'email' => 'carlos@example.com',
+        'avatar' => 'https://i.pravatar.cc/150?u=carlos',
     ];
 
     protected function setUp(): void
@@ -32,7 +33,7 @@ class ContactTest extends TestCase
     public function test_la_tabla_contacts_tiene_los_campos_correctos(): void
     {
         $this->assertTrue(Schema::hasColumns('contacts', [
-            'id', 'user_id', 'name', 'address', 'phone_number', 'email',
+            'id', 'user_id', 'name', 'address', 'phone_number', 'email', 'avatar',
             'created_at', 'updated_at', 'deleted_at',
         ]));
     }
@@ -70,7 +71,7 @@ class ContactTest extends TestCase
 
         $this->getJson("/api/v1/contacts/{$contact->id}")
             ->assertOk()
-            ->assertJsonStructure(['data' => ['id', 'name', 'address', 'phone_number', 'email']]);
+            ->assertJsonStructure(['data' => ['id', 'name', 'address', 'phone_number', 'email', 'avatar']]);
     }
 
     public function test_actualiza_un_contacto_propio(): void
@@ -97,7 +98,7 @@ class ContactTest extends TestCase
     public function test_no_puede_ver_editar_ni_eliminar_contactos_de_otro_usuario(): void
     {
         $ajeno = Contact::factory()->create();
-        $error = ['message' => 'No tienes permiso para acceder a este contacto.'];
+        $error = ['message' => 'usted no tiene los permisos necesarios para ver este recurso'];
 
         $this->getJson("/api/v1/contacts/{$ajeno->id}")->assertForbidden()->assertExactJson($error);
         $this->putJson("/api/v1/contacts/{$ajeno->id}", $this->datos)->assertForbidden()->assertExactJson($error);
@@ -110,6 +111,13 @@ class ContactTest extends TestCase
     {
         $this->getJson('/api/v1/contacts/9999')
             ->assertNotFound()
-            ->assertExactJson(['message' => 'Contacto no encontrado.']);
+            ->assertExactJson(['message' => 'recurso no encontrado']);
+    }
+
+    public function test_ruta_inexistente_responde_404_en_json(): void
+    {
+        $this->getJson('/api/v1/no-existe')
+            ->assertNotFound()
+            ->assertExactJson(['message' => 'recurso no encontrado']);
     }
 }

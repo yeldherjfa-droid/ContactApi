@@ -13,7 +13,7 @@ class Contact extends Model
     /** @use HasFactory<ContactFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'address', 'phone_number', 'email'];
+    protected $fillable = ['name', 'address', 'phone_number', 'email', 'avatar'];
 
     public function user(): BelongsTo
     {

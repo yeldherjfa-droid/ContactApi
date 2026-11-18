@@ -28,10 +28,18 @@ return Application::configure(basePath: dirname(__DIR__))
             return response()->json(['message' => 'No autenticado.'], 401);
         });
 
-        // Errores HTTP de la API (403, 404, ...): siempre {"message": "..."}.
+        // Errores HTTP de la API: siempre un objeto JSON {"message": "..."}.
         $exceptions->render(function (HttpExceptionInterface $e, Request $request) {
-            if ($request->is('api/*')) {
-                return response()->json(['message' => $e->getMessage()], $e->getStatusCode(), $e->getHeaders());
+            if (! $request->is('api/*')) {
+                return null;
             }
+
+            $message = match ($e->getStatusCode()) {
+                403 => 'usted no tiene los permisos necesarios para ver este recurso',
+                404 => 'recurso no encontrado',
+                default => $e->getMessage(),
+            };
+
+            return response()->json(['message' => $message], $e->getStatusCode(), $e->getHeaders());
         });
     })->create();

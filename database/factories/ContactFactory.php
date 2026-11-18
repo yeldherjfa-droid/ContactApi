@@ -19,6 +19,7 @@ class ContactFactory extends Factory
             'address' => fake()->address(),
             'phone_number' => fake()->numerify('3#########'),
             'email' => fake()->safeEmail(),
+            'avatar' => 'https://i.pravatar.cc/150?u='.fake()->uuid(),
         ];
     }
 }

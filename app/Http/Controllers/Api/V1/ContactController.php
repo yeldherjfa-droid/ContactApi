@@ -67,8 +67,8 @@ class ContactController extends Controller
     {
         $contact = Contact::find($id);
 
-        abort_if(! $contact, 404, 'Contacto no encontrado.');
-        abort_if($contact->user_id !== $request->user()->id, 403, 'No tienes permiso para acceder a este contacto.');
+        abort_if(! $contact, 404);
+        abort_if($contact->user_id !== $request->user()->id, 403);
 
         return $contact;
     }

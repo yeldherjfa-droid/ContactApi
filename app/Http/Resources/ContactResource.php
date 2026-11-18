@@ -15,6 +15,7 @@ class ContactResource extends JsonResource
             'address' => $this->address,
             'phone_number' => $this->phone_number,
             'email' => $this->email,
+            'avatar' => $this->avatar,
         ];
     }
 }

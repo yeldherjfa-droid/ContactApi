@@ -18,6 +18,7 @@ class ContactRequest extends FormRequest
             'address' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:20'],
             'email' => ['required', 'email', 'max:100'],
+            'avatar' => ['nullable', 'url', 'max:255'],
         ];
     }
 
@@ -33,6 +34,7 @@ class ContactRequest extends FormRequest
             'email.required' => 'El correo es obligatorio.',
             'email.email' => 'El correo no tiene un formato válido.',
             'email.max' => 'El correo admite máximo 100 caracteres.',
+            'avatar.url' => 'El avatar debe ser una URL válida.',
         ];
     }
 }
