@@ -213,17 +213,10 @@
       }
     },
     {
-      "_id": "fld_errores",
-      "_type": "request_group",
-      "parentId": "wrk_contactapi",
-      "name": "10 Errores de contactos",
-      "metaSortKey": 10
-    },
-    {
       "_id": "req_10",
       "_type": "request",
-      "parentId": "fld_errores",
-      "name": "403 - contacto de otro usuario",
+      "parentId": "wrk_contactapi",
+      "name": "10 Errores de contacto (403 / 404)",
       "method": "GET",
       "url": "http://127.0.0.1:8000/api/v1/contacts/6",
       "metaSortKey": 10,
@@ -234,53 +227,6 @@
         }
       ],
       "body": {},
-      "authentication": {
-        "type": "bearer",
-        "token": "token-demo"
-      }
-    },
-    {
-      "_id": "req_11",
-      "_type": "request",
-      "parentId": "fld_errores",
-      "name": "404 - contacto inexistente",
-      "method": "GET",
-      "url": "http://127.0.0.1:8000/api/v1/contacts/9999",
-      "metaSortKey": 11,
-      "headers": [
-        {
-          "name": "Accept",
-          "value": "application/json"
-        }
-      ],
-      "body": {},
-      "authentication": {
-        "type": "bearer",
-        "token": "token-demo"
-      }
-    },
-    {
-      "_id": "req_12",
-      "_type": "request",
-      "parentId": "fld_errores",
-      "name": "422 - contacto sin datos",
-      "method": "POST",
-      "url": "http://127.0.0.1:8000/api/v1/contacts",
-      "metaSortKey": 12,
-      "headers": [
-        {
-          "name": "Accept",
-          "value": "application/json"
-        },
-        {
-          "name": "Content-Type",
-          "value": "application/json"
-        }
-      ],
-      "body": {
-        "mimeType": "application/json",
-        "text": "{}"
-      },
       "authentication": {
         "type": "bearer",
         "token": "token-demo"
