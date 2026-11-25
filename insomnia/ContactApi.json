@@ -216,7 +216,7 @@
       "_id": "req_10",
       "_type": "request",
       "parentId": "wrk_contactapi",
-      "name": "10 Errores de contacto (403 / 404)",
+      "name": "10 Errores de contacto (401 / 403 / 404)",
       "method": "GET",
       "url": "http://127.0.0.1:8000/api/v1/contacts/6",
       "metaSortKey": 10,
@@ -251,23 +251,6 @@
         "type": "bearer",
         "token": "token-demo"
       }
-    },
-    {
-      "_id": "req_14",
-      "_type": "request",
-      "parentId": "wrk_contactapi",
-      "name": "12 Error 401 - sin token",
-      "method": "GET",
-      "url": "http://127.0.0.1:8000/api/v1/profile",
-      "metaSortKey": 12,
-      "headers": [
-        {
-          "name": "Accept",
-          "value": "application/json"
-        }
-      ],
-      "body": {},
-      "authentication": {}
     }
   ]
 }
