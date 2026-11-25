@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    /**
-     * Inicia sesión y entrega un token de Sanctum.
-     *
-     * @unauthenticated
-     */
     public function login(LoginRequest $request): JsonResponse
     {
         $user = User::where('email', $request->validated('email'))->first();
@@ -25,7 +20,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Las credenciales no son correctas.'], 401);
         }
 
-        $token = $user->createToken($request->validated('device_name'))->plainTextToken;
+        $token = $user->createToken($request->validated('device_name') ?? 'api')->plainTextToken;
 
         return response()->json([
             'token' => $token,
@@ -33,9 +28,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Cierra la sesión borrando el token actual.
-     */
     public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();

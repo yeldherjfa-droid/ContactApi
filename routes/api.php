@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
 
-    // Públicas
     Route::get('/health', HealthController::class)->name('health');
     Route::post('/auth/login', [AuthController::class, 'login'])->middleware('throttle:login')->name('auth.login');
 
-    // Requieren token (Authorization: Bearer <token>)
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 

@@ -7,11 +7,6 @@ use Illuminate\Http\JsonResponse;
 
 class HealthController extends Controller
 {
-    /**
-     * Estado del servicio.
-     *
-     * @unauthenticated
-     */
     public function __invoke(): JsonResponse
     {
         return response()->json([

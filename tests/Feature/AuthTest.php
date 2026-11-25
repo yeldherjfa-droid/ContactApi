@@ -48,7 +48,7 @@ class AuthTest extends TestCase
     {
         $this->postJson('/api/v1/auth/login', [])
             ->assertStatus(422)
-            ->assertJsonValidationErrors(['email', 'password', 'device_name']);
+            ->assertJsonValidationErrors(['email', 'password']);
     }
 
     public function test_logout_borra_el_token(): void

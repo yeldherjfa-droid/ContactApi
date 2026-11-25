@@ -41,7 +41,7 @@ class ContactTest extends TestCase
     public function test_lista_solo_los_contactos_del_usuario(): void
     {
         Contact::factory()->count(3)->for($this->user)->create();
-        Contact::factory()->count(2)->create(); // de otro usuario
+        Contact::factory()->count(2)->create();
 
         $this->getJson('/api/v1/contacts')
             ->assertOk()

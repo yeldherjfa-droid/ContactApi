@@ -14,7 +14,6 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // La API no tiene página de login: sin token se responde 401, no se redirige.
         $middleware->redirectGuestsTo(fn () => null);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
@@ -22,12 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
             return $request->is('api/*') || $request->expectsJson();
         });
 
-        // Sin token o con token inválido: 401 en JSON.
         $exceptions->render(function (AuthenticationException $e, Request $request) {
             return response()->json(['message' => 'No autenticado.'], 401);
         });
 
-        // Errores HTTP de la API: siempre un objeto JSON {"message": "..."}.
         $exceptions->render(function (HttpExceptionInterface $e, Request $request) {
             if (! $request->is('api/*')) {
                 return null;

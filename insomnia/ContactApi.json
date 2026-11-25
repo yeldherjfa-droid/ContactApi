@@ -213,10 +213,17 @@
       }
     },
     {
+      "_id": "fld_errores",
+      "_type": "request_group",
+      "parentId": "wrk_contactapi",
+      "name": "10 Errores de contactos",
+      "metaSortKey": 10
+    },
+    {
       "_id": "req_10",
       "_type": "request",
-      "parentId": "wrk_contactapi",
-      "name": "10 Error 403 - contacto de otro usuario",
+      "parentId": "fld_errores",
+      "name": "403 - contacto de otro usuario",
       "method": "GET",
       "url": "http://127.0.0.1:8000/api/v1/contacts/6",
       "metaSortKey": 10,
@@ -235,8 +242,8 @@
     {
       "_id": "req_11",
       "_type": "request",
-      "parentId": "wrk_contactapi",
-      "name": "11 Error 404 - contacto inexistente",
+      "parentId": "fld_errores",
+      "name": "404 - contacto inexistente",
       "method": "GET",
       "url": "http://127.0.0.1:8000/api/v1/contacts/9999",
       "metaSortKey": 11,
@@ -255,8 +262,8 @@
     {
       "_id": "req_12",
       "_type": "request",
-      "parentId": "wrk_contactapi",
-      "name": "12 Error 422 - contacto sin datos",
+      "parentId": "fld_errores",
+      "name": "422 - contacto sin datos",
       "method": "POST",
       "url": "http://127.0.0.1:8000/api/v1/contacts",
       "metaSortKey": 12,
@@ -283,10 +290,10 @@
       "_id": "req_13",
       "_type": "request",
       "parentId": "wrk_contactapi",
-      "name": "13 Logout",
+      "name": "11 Logout",
       "method": "POST",
       "url": "http://127.0.0.1:8000/api/v1/auth/logout",
-      "metaSortKey": 13,
+      "metaSortKey": 11,
       "headers": [
         {
           "name": "Accept",
@@ -303,10 +310,10 @@
       "_id": "req_14",
       "_type": "request",
       "parentId": "wrk_contactapi",
-      "name": "14 Error 401 - sin token",
+      "name": "12 Error 401 - sin token",
       "method": "GET",
       "url": "http://127.0.0.1:8000/api/v1/profile",
-      "metaSortKey": 14,
+      "metaSortKey": 12,
       "headers": [
         {
           "name": "Accept",
